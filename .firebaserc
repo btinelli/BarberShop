@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "barbershop-ea88c": {
+      "hosting": {
+        "app": [
+          "barbershop-ea88c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "barbershop-ea88c"
+  }
+}
