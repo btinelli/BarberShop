@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { DataService, Item } from 'src/app/services/data.service';
+
+import { DataService, Lancamento } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import { DataService, Item } from 'src/app/services/data.service';
 })
 export class HomePage implements OnInit {
   public title: string = 'Home';
-  notes: Item[] = [];
+  notes: Lancamento[] = [];
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
