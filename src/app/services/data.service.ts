@@ -7,10 +7,7 @@ export interface Lancamento {
   descricao: string
   valor: number
 }
-export interface Servico {
-  descricao: string
-  valor: number
-}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,8 +19,5 @@ export class DataService {
     const notesRef = collection(this.firestore, 'lancamentos');
     return collectionData(notesRef, { idField: 'id' }) as Observable<Lancamento[]>;
   }
-  getServicos(): Observable<Servico[]> {
-    const notesRef = collection(this.firestore, 'servicos');
-    return collectionData(notesRef, { idField: 'id' }) as Observable<Servico[]>;
-  }
+
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { DataService, Servico } from 'src/app/services/data.service';
+
+import { Servico, ServicoService } from 'src/app/services/servico.service';
 
 @Component({
   selector: 'app-servicos',
@@ -11,10 +12,10 @@ export class ServicosPage implements OnInit {
   public title: string = 'Serviços';
   servicos: Servico[] = [];
 
-  constructor(private dataService: DataService, public modalController: ModalController) { }
+  constructor(private servicoService: ServicoService, public modalController: ModalController) { }
 
   ngOnInit() {
-    this.dataService.getLancamentos().subscribe(res => {
+    this.servicoService.getServicos().subscribe(res => {
       this.servicos = res;
     });
   }
