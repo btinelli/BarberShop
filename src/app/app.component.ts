@@ -1,4 +1,4 @@
-import { DataService, Item } from './services/data.service';
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
+    { title: 'Home', url: 'home', icon: 'home' },
     { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
     { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
     { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
@@ -17,12 +17,8 @@ export class AppComponent {
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  notes: Item[] = [];
 
-  constructor(private dataService: DataService) {
-    this.dataService.getItems().subscribe(res => {
-      this.notes = res;
-      console.log(this.notes)
-    });
+  constructor() {
+
   }
 }
