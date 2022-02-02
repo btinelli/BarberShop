@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 
 import { Servico, ServicoService } from 'src/app/services/servico.service';
@@ -9,10 +10,18 @@ import { Servico, ServicoService } from 'src/app/services/servico.service';
   styleUrls: ['./servicos.page.scss'],
 })
 export class ServicosPage implements OnInit {
-  public title: string = 'Serviços';
-  servicos: Servico[] = [];
+  public title: string = 'Serviços'
+  public servicos: Servico[] = []
 
-  constructor(private servicoService: ServicoService, public modalController: ModalController) { }
+
+  constructor(private servicoService: ServicoService,
+    public modalController: ModalController,
+    private formBuilder: FormBuilder) { }
+
+  servicoForm = this.formBuilder.group({
+    descricao: ['', Validators.required],
+    valor: ['', Validators.required]
+  })
 
   ngOnInit() {
     this.servicoService.getServicos().subscribe(res => {
@@ -21,10 +30,18 @@ export class ServicosPage implements OnInit {
   }
 
   dismiss() {
-    // using the injected ModalController this page
-    // can "dismiss" itself and optionally pass back data
+
     this.modalController.dismiss({
       'dismissed': true
     });
+  }
+
+  salvar() {
+    let newServico: Servico = { descricao: this.servicoForm.get('descricao').value, valor: this.servicoForm.get('valor').value, criadoEm: new Date().toLocaleString() }
+    this.servicoService.addServico(newServico).then(res => {
+      this.dismiss()
+    }).catch(error => {
+      console.log(error)
+    })
   }
 }

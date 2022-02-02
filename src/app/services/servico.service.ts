@@ -3,9 +3,10 @@ import { addDoc, collection, collectionData, deleteDoc, doc, docData, Firestore,
 import { Observable } from 'rxjs';
 
 export interface Servico {
-  id: string
+  id?: string
   descricao: string
   valor: number
+  criadoEm: string
 }
 
 @Injectable({

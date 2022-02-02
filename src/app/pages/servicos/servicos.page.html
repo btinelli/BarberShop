@@ -47,17 +47,19 @@
         </ion-header>
 
         <ion-content [fullscreen]="true" class="ion-text-center">
-          <ion-card>
-            <ion-item>
-              <ion-label position="floating">Descrição</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Valor</ion-label>
-              <ion-input></ion-input>
-            </ion-item>
-            <ion-button color="primary" (click)="dismiss()">Salvar</ion-button>
-          </ion-card>
+          <form [formGroup]="servicoForm">
+            <ion-card>
+              <ion-item>
+                <ion-label position="floating">Descrição</ion-label>
+                <ion-input type="text" formControlName="descricao"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Valor</ion-label>
+                <ion-input type="number" formControlName="valor"></ion-input>
+              </ion-item>
+              <ion-button color="primary" [disabled]="!servicoForm.valid" (click)="salvar()">Salvar</ion-button>
+            </ion-card>
+          </form>
         </ion-content>
       </ion-content>
     </ng-template>
