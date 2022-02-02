@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 
 import { Servico, ServicoService } from 'src/app/services/servico.service';
 
@@ -16,7 +16,8 @@ export class ServicosPage implements OnInit {
 
   constructor(private servicoService: ServicoService,
     public modalController: ModalController,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    public toastController: ToastController) { }
 
   servicoForm = this.formBuilder.group({
     descricao: ['', Validators.required],
@@ -36,12 +37,29 @@ export class ServicosPage implements OnInit {
     });
   }
 
+  async presentSuccessToast() {
+    const toast = await this.toastController.create({
+      message: 'Adicionado com sucesso.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async presentErrorToast() {
+    const toast = await this.toastController.create({
+      message: 'Erro ao salvar.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
   salvar() {
     let newServico: Servico = { descricao: this.servicoForm.get('descricao').value, valor: this.servicoForm.get('valor').value, criadoEm: new Date().toLocaleString() }
     this.servicoService.addServico(newServico).then(res => {
       this.dismiss()
+      this.presentSuccessToast()
     }).catch(error => {
-      console.log(error)
+      this.presentErrorToast()
     })
   }
 }
