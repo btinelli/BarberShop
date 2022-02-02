@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'servicos',
-    loadChildren: () => import('./pages/servicos/servicos.module').then( m => m.ServicosPageModule)
+    loadChildren: () => import('./pages/servicos/servicos-list/servicos.module').then(m => m.ServicosPageModule)
   }
 ];
 

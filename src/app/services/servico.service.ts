@@ -6,7 +6,6 @@ export interface Servico {
   id?: string
   descricao: string
   valor: number
-  criadoEm: string
 }
 
 @Injectable({

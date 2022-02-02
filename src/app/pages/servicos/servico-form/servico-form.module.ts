@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ServicosPageRoutingModule } from './servicos-routing.module';
+import { ServicoFormPageRoutingModule } from './servico-form-routing.module';
 
-import { ServicosPage } from './servicos.page';
+import { ServicoFormPage } from './servico-form.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { ServicosPage } from './servicos.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    ServicosPageRoutingModule
+    ServicoFormPageRoutingModule
   ],
-  declarations: [ServicosPage]
+  declarations: [ServicoFormPage]
 })
-export class ServicosPageModule { }
+export class ServicoFormPageModule { }
